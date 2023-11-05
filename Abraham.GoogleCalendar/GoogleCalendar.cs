@@ -56,6 +56,7 @@ public class GoogleCalendarReader
     private string _applicationName;
     private string _credentialsFilename;
     private string _accessTokenFilename;
+    private string _credentialsJson;
     #endregion
 
 
@@ -75,6 +76,12 @@ public class GoogleCalendarReader
     public GoogleCalendarReader UseCredentialsFile(string credentialsFilename)
 	{
 		_credentialsFilename = credentialsFilename ?? throw new ArgumentNullException(nameof(credentialsFilename));
+		return this;
+	}
+
+    public GoogleCalendarReader UseCredentials(string json)
+	{
+		_credentialsJson = json ?? throw new ArgumentNullException(nameof(json));
 		return this;
 	}
 
@@ -115,10 +122,15 @@ public class GoogleCalendarReader
     private UserCredential LoginToGoogle()
     {
         // Authorize
-        var fileContents = File.ReadAllText(_credentialsFilename);
-        var bytes = Encoding.UTF8.GetBytes(fileContents);
+        string credentialJson = string.Empty;
+        if (!string.IsNullOrWhiteSpace(_credentialsFilename))
+            credentialJson = File.ReadAllText(_credentialsFilename);
+        else
+            credentialJson = _credentialsJson;
+        var credentialBytes = Encoding.UTF8.GetBytes(credentialJson);
+
         UserCredential credential = null;
-        using (var stream = new MemoryStream(bytes, 0, fileContents.Length, writable: false, publiclyVisible: true))
+        using (var stream = new MemoryStream(credentialBytes, 0, credentialJson.Length, writable: false, publiclyVisible: true))
         {
             credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                 GoogleClientSecrets.Load(stream).Secrets,
@@ -195,8 +207,9 @@ public class GoogleCalendarReader
 
     private void VerifyParameters()
     {
-        if (string.IsNullOrEmpty(_credentialsFilename))
-            throw new InvalidOperationException("Please specify a credentials file.");
+        if (string.IsNullOrEmpty(_credentialsFilename) &&
+            string.IsNullOrEmpty(_credentialsJson))
+            throw new InvalidOperationException("Please specify a credentials file or the Json credentials directly. Call either method UseCredentialsFile or UseCredentials");
 
         if (!File.Exists(_credentialsFilename))
             throw new InvalidOperationException("You need to have the credentials file. Go get this file from google. Refer to my README.md for instructions.");
