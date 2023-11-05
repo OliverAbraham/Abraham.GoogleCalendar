@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32519.111
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Solution items", "4 Solution items", "{11C66871-7A77-4FAC-8041-E43253C86576}"
+	ProjectSection(SolutionItems) = preProject
+		Abraham.GoogleCalendar\Ciridata.ico = Abraham.GoogleCalendar\Ciridata.ico
+		Abraham.GoogleCalendar\Ciridata.png = Abraham.GoogleCalendar\Ciridata.png
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abraham.GoogleCalendar", "Abraham.GoogleCalendar\Abraham.GoogleCalendar.csproj", "{26B182EE-14A0-4F0E-A3B9-634AF8D64BFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleCalendar.Demo", "Abraham.GoogleCalendar.Demo\GoogleCalendar.Demo.csproj", "{495C540A-F87F-4641-94A3-75AB37896E75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Nuget-Package", "1 Nuget-Package", "{AA8CB3D8-6795-4476-847F-0C70408A764A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Demo", "2 Demo", "{CE8B9698-3756-4FD4-B5E0-6C325033D4BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Screenshots", "3 Screenshots", "{0A2507E5-1644-4881-812E-EBDA39E204E1}"
+	ProjectSection(SolutionItems) = preProject
+		Screenshots\screenshot1.jpg = Screenshots\screenshot1.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26B182EE-14A0-4F0E-A3B9-634AF8D64BFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B182EE-14A0-4F0E-A3B9-634AF8D64BFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B182EE-14A0-4F0E-A3B9-634AF8D64BFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B182EE-14A0-4F0E-A3B9-634AF8D64BFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{495C540A-F87F-4641-94A3-75AB37896E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{495C540A-F87F-4641-94A3-75AB37896E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495C540A-F87F-4641-94A3-75AB37896E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495C540A-F87F-4641-94A3-75AB37896E75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26B182EE-14A0-4F0E-A3B9-634AF8D64BFA} = {AA8CB3D8-6795-4476-847F-0C70408A764A}
+		{495C540A-F87F-4641-94A3-75AB37896E75} = {CE8B9698-3756-4FD4-B5E0-6C325033D4BD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8347F86-F5DE-44B1-883E-4240D5A0C457}
+	EndGlobalSection
+EndGlobal
