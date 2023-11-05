@@ -92,22 +92,26 @@ public class GoogleCalendarReader
 
     public List<Event> ReadEvents(int maxEventCount = 999999)
     {
-        return ReadEventsByStartTime(DateTime.Now, maxEventCount);
+        return ReadEventsByStartTime(DateTime.Now, DateTime.MaxValue, maxEventCount);
     }
 
-    public List<Event> ReadEventsByStartTime(DateTime startTime, int maxEventCount = 999999)
+    public List<Event> ReadEventsByStartTime(DateTime startTime, DateTime endTime, int maxEventCount = 999999)
     {
         VerifyParameters();
         Messages.Clear();
 
         var credential = LoginToGoogle();
 
-        Events = ReadEvents(credential, startTime, maxEventCount);
+        Events = ReadEvents(credential, startTime, endTime, maxEventCount);
 
         var results = MapEventsToResults(Events);
         return results;
     }
+    #endregion
 
+
+
+    #region ------------- Implementation ------------------------------------------------------
     private UserCredential LoginToGoogle()
     {
         // Authorize
@@ -130,7 +134,7 @@ public class GoogleCalendarReader
         return credential;
     }
 
-    private Events? ReadEvents(UserCredential credential, DateTime startTime, int maxEventCount)
+    private Events? ReadEvents(UserCredential credential, DateTime startTime, DateTime endTime, int maxEventCount)
     {
         // Create Google Calendar API service.
         var service = new CalendarService(new BaseClientService.Initializer()
@@ -142,11 +146,12 @@ public class GoogleCalendarReader
 
         // Define parameters of request.
         EventsResource.ListRequest request = service.Events.List("primary");
-        request.TimeMin = startTime;
-        request.ShowDeleted = false;
+        request.TimeMin      = startTime;
+        request.TimeMax      = endTime;
+        request.ShowDeleted  = false;
         request.SingleEvents = true;
-        request.MaxResults = maxEventCount;
-        request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+        request.MaxResults   = maxEventCount;
+        request.OrderBy      = EventsResource.ListRequest.OrderByEnum.StartTime;
 
 
         // Read events
@@ -187,11 +192,7 @@ public class GoogleCalendarReader
 
         return results;
     }
-    #endregion
 
-
-
-    #region ------------- Implementation ------------------------------------------------------
     private void VerifyParameters()
     {
         if (string.IsNullOrEmpty(_credentialsFilename))
