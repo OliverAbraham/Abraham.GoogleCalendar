@@ -1,5 +1,8 @@
 # Abraham.GoogleCalendar
 
+![](https://img.shields.io/github/downloads/oliverabraham/Abraham.GoogleCalendar/total) ![](https://img.shields.io/github/license/oliverabraham/Abraham.GoogleCalendar) ![](https://img.shields.io/github/languages/count/oliverabraham/Abraham.GoogleCalendar) ![GitHub Repo stars](https://img.shields.io/github/stars/oliverabraham/Abraham.GoogleCalendar?label=repo%20stars) ![GitHub Repo stars](https://img.shields.io/github/stars/oliverabraham?label=user%20stars)
+
+
 ## OVERVIEW
 
 Read entries from a google calendar easily.
